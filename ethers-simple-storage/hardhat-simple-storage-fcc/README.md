@@ -6,6 +6,18 @@ Try running some of the following tasks
 
 // https://hardhat.org/hardhat-runner/plugins/nomiclabs-hardhat-etherscan
 
+## 启动本地节点
+
+```
+yarn hardhat node
+```
+
+## 控制台
+
+```
+yarn hardhat console
+```
+
 ```shell
 yarn hardhat
 # 编译

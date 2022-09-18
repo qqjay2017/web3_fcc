@@ -19,7 +19,10 @@
         "dotenv": "^16.0.2",
         "ethers": "^5.4.7",
         "hardhat": "^2.11.2",
-        "hardhat-gas-reporter": "^1.0.8",
+        "hardhat-gas-reporter": "^1.0.9",
+        "mocha": "^10.0.0",
+        "prettier": "^2.7.1",
+        "prettier-plugin-solidity": "^1.0.0-beta.24",
         "solidity-coverage": "^0.8.0",
         "ts-node": ">=8.0.0",
         "typechain": "^8.1.0",
@@ -30,6 +33,11 @@
         "compile": "yarn hardhat compile",
         "---- 部署合约 ----": "----------",
         "deploy:hardhat": "yarn hardhat run scripts/deploy.ts --network hardhat",
-        "deploy:goerli": "yarn hardhat run scripts/deploy.ts --network goerli"
+        "deploy:goerli": "yarn hardhat run scripts/deploy.ts --network goerli",
+        "---- 自定义任务 ----": "--------",
+        "blocknumber:goerli": "yarn hardhat  block-number --network goerli",
+        "---- 测试脚本 ----": "-------",
+        "test": "yarn hardhat test",
+        "coverage": "yarn hardhat coverage"
     }
 }
