@@ -21,7 +21,19 @@ const config: HardhatUserConfig = {
     etherscan: {
         // Your API key for Etherscan
         // Obtain one at https://etherscan.io/
-        apiKey: EHTERSCAN_API_KEY,
+        apiKey: {
+            goerli: EHTERSCAN_API_KEY,
+        },
+        customChains: [
+            {
+                network: "goerli",
+                chainId: 5,
+                urls: {
+                    apiURL: "http://api-goerli.etherscan.io/api", // https => http
+                    browserURL: "https://goerli.etherscan.io/",
+                },
+            },
+        ],
     },
 }
 

@@ -7,10 +7,10 @@ async function main() {
     await simpleStorage.deployed()
 
     console.log(`deployed to ${simpleStorage.address}`)
-    // if (network.config.chainId !== 31337 && !!process.env.EHTERSCAN_API_KEY) {
-    //     await simpleStorage.deployTransaction.wait(6)
-    //     await verify(simpleStorage.address, [])
-    // }
+    if (network.config.chainId !== 31337 && !!process.env.EHTERSCAN_API_KEY) {
+        await simpleStorage.deployTransaction.wait(6)
+        await verify(simpleStorage.address, [])
+    }
     const currentValue = await simpleStorage.retrieve()
     console.log(`current Value is: ${currentValue}`)
 
