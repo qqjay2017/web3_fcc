@@ -47,6 +47,7 @@ const config: HardhatUserConfig = {
       {
         network: "goerli",
         chainId: 5,
+
         urls: {
           apiURL: "http://api-goerli.etherscan.io/api", // https => http
           browserURL: "https://goerli.etherscan.io/",
@@ -55,7 +56,7 @@ const config: HardhatUserConfig = {
     ],
   },
   gasReporter: {
-    enabled: true,
+    enabled: false,
     outputFile: "gas-report.txt",
     noColors: true,
     currency: "USD",

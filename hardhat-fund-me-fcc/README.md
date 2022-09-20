@@ -11,3 +11,9 @@ REPORT_GAS=true npx hardhat test
 npx hardhat node
 npx hardhat run scripts/deploy.ts
 ```
+
+## 部署命令
+
+```
+yarn hardhat deploy --network goerli
+```

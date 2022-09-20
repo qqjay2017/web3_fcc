@@ -2,6 +2,7 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
 import { getNamedAccounts, network } from "hardhat";
 import { networkConfig, developmentChains } from "../help-hardhat-config";
+import { verify } from "../utils/verify";
 const func: DeployFunction = async ({
   deployments,
 }: HardhatRuntimeEnvironment) => {
@@ -22,13 +23,22 @@ const func: DeployFunction = async ({
   }
 
   log("ethUsdPriceFeedAddress:", ethUsdPriceFeedAddress);
+  const args = [ethUsdPriceFeedAddress];
   const fundMe = await deploy("FundMe", {
     from: deployer,
-    args: [ethUsdPriceFeedAddress],
+    args: args,
     log: true,
+    waitConfirmations: 6,
   });
+  if (
+    !developmentChains.includes(network.name) &&
+    process.env.EHTERSCAN_API_KEY
+  ) {
+    await verify(fundMe.address, args);
+  }
   log("---------------");
 };
 export default func;
 
-module.exports.tags = ["all", "fundme"];
+// module.exports.tags = ["all", "fundme"];
+// export const tags = ["all", "fundme"];
