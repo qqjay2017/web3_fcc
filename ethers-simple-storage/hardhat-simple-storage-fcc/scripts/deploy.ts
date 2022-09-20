@@ -1,9 +1,11 @@
 import { ethers, run, network } from "hardhat"
 import "@nomiclabs/hardhat-etherscan"
+import { SimpleStorage, SimpleStorage__factory } from "../typechain-types"
 async function main() {
-    const SimpleStorage = await ethers.getContractFactory("SimpleStorage")
+    const SimpleStorage: SimpleStorage__factory =
+        await ethers.getContractFactory("SimpleStorage")
     console.log("Deploying contract")
-    const simpleStorage = await SimpleStorage.deploy()
+    const simpleStorage: SimpleStorage = await SimpleStorage.deploy()
     await simpleStorage.deployed()
 
     console.log(`deployed to ${simpleStorage.address}`)
@@ -11,6 +13,7 @@ async function main() {
         await simpleStorage.deployTransaction.wait(6)
         await verify(simpleStorage.address, [])
     }
+
     const currentValue = await simpleStorage.retrieve()
     console.log(`current Value is: ${currentValue}`)
 

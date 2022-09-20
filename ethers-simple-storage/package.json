@@ -12,6 +12,7 @@
     "compile": "yarn solcjs --bin --abi --include-path node_modules/ --base-path . -o  . SimpleStorage.sol"
   },
   "devDependencies": {
-    "@types/fs-extra": "^9.0.13"
+    "@types/fs-extra": "^9.0.13",
+    "hardhat": "^2.11.2"
   }
 }

@@ -31,6 +31,8 @@
     "scripts": {
         "---- 编译合约 ----": "----------",
         "compile": "yarn hardhat compile",
+        "---- 生成合约ts类型 ----": "----------",
+        "typechain": "yarn hardhat  typechain",
         "---- 部署合约 ----": "----------",
         "deploy:hardhat": "yarn hardhat run scripts/deploy.ts --network hardhat",
         "deploy:goerli": "yarn hardhat run scripts/deploy.ts --network goerli",
