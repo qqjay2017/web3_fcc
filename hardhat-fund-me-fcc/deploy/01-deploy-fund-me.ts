@@ -41,4 +41,4 @@ const func = async ({ deployments }: HardhatRuntimeEnvironment) => {
 export default func;
 
 // = ["all", "fundme"];
-export const tags = ["all", "fundme"];
+func.tags = ["all", "fundme"];

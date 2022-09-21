@@ -9,7 +9,7 @@ describe("FundMe", async () => {
     // const accounts = await ethers.getSigners();
     deployer = (await getNamedAccounts()).deployer;
 
-    await deployments.fixture();
+    await deployments.fixture(["all"]);
 
     fundMe = await ethers.getContract("FundMe", deployer);
     mockV3Aggregator = await ethers.getContract("MockV3Aggregator", deployer);
