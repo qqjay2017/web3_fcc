@@ -1,22 +1,43 @@
 // SPDX-License-Identifier: MIT
-
+// Pragma
 pragma solidity ^0.8.8;
-
+// Import
 import "./PriceConverter.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
-error NotOwner();
+// Error Codes
+error FundMe__NotOwner();
+
+/**
+ * @title a contract for crowd  funding
+ * @author huang
+ * @notice this is demo
+ * @dev 1
+ */
 
 contract FundMe {
+    // Type declarations
     using PriceConverter for uint256;
-    // 1 usd
+
+    // State variables
+    mapping(address => uint256) public addressToAmountFunded;
     //  constant 可以省gas
     uint256 public constant MINIMUM_USD = 1 * 1e18;
 
     address[] public funders;
-    mapping(address => uint256) public addressToAmountFunded;
 
     address public immutable i_owner;
-     AggregatorV3Interface public priceFeed ;
+    AggregatorV3Interface public priceFeed;
+
+    // Modifiers
+    modifier onlyOwner() {
+        if (msg.sender == i_owner) {
+            revert FundMe__NotOwner();
+        }
+
+        //  require(msg.sender == i_owner,"Sender is not owner");
+        //  下划线指剩余代码
+        _;
+    }
 
     constructor(address priceFeedAddress) {
         i_owner = msg.sender;
@@ -57,16 +78,6 @@ contract FundMe {
             value: address(this).balance
         }("");
         require(callSuccess, "Send Failed");
-    }
-
-    modifier onlyOwner() {
-        if (msg.sender == i_owner) {
-            revert NotOwner();
-        }
-
-        //  require(msg.sender == i_owner,"Sender is not owner");
-        //  下划线指剩余代码
-        _;
     }
 
     // https://solidity-by-example.org/fallback/

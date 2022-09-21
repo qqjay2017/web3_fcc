@@ -31,5 +31,5 @@ const func: DeployFunction = async ({
 export default func;
 
 // TODO tags是啥意思?
-// export const tags = ["all", "mocks"];
+export const tags = ["all", "mocks"];
 // module.exports.tags = ["all", "mocks"];

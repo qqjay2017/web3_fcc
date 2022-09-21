@@ -17,3 +17,7 @@ npx hardhat run scripts/deploy.ts
 ```
 yarn hardhat deploy --network goerli
 ```
+
+```
+yarn add @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers
+```

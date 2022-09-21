@@ -1,11 +1,10 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
-import { DeployFunction } from "hardhat-deploy/types";
+
 import { getNamedAccounts, network } from "hardhat";
 import { networkConfig, developmentChains } from "../help-hardhat-config";
 import { verify } from "../utils/verify";
-const func: DeployFunction = async ({
-  deployments,
-}: HardhatRuntimeEnvironment) => {
+import { FundMe } from "../typechain-types";
+const func = async ({ deployments }: HardhatRuntimeEnvironment) => {
   // code here
   const { deploy, get, log } = deployments;
   const { deployer } = await getNamedAccounts();
@@ -28,7 +27,7 @@ const func: DeployFunction = async ({
     from: deployer,
     args: args,
     log: true,
-    waitConfirmations: 6,
+    // waitConfirmations: 6,
   });
   if (
     !developmentChains.includes(network.name) &&
@@ -37,8 +36,9 @@ const func: DeployFunction = async ({
     await verify(fundMe.address, args);
   }
   log("---------------");
+  return fundMe;
 };
 export default func;
 
-// module.exports.tags = ["all", "fundme"];
-// export const tags = ["all", "fundme"];
+// = ["all", "fundme"];
+export const tags = ["all", "fundme"];
