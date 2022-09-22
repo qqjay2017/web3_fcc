@@ -13,10 +13,11 @@ const func: DeployFunction = async ({
   const { deploy, log } = deployments;
   const { deployer } = await getNamedAccounts();
   const chainId = network.config.chainId;
-  console.log(network.name, "network.name");
+  console.log(network.name, chainId, "network.name");
+
   // developmentChains.includes(network.name)
-  if (chainId === 31337) {
-    log("Localhost network detected, Deploy mocks...");
+  if (chainId == 31337) {
+    console.log("Localhost network detected, Deploy mocks...");
 
     await deploy("MockV3Aggregator", {
       contract: "MockV3Aggregator",
@@ -24,7 +25,7 @@ const func: DeployFunction = async ({
       args: [DECIMALS, INITIAL_ANSWER],
       log: true,
     });
-    log("Mock deployed");
+    console.log("Mock deployed");
     log("-----------------------------------------------");
   }
 };

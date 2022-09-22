@@ -21,3 +21,13 @@ yarn hardhat deploy --network goerli
 ```
 yarn add @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers
 ```
+
+1333413205320000000000 getPrice
+13334132053200000000000 getConversionRate(10eth)
+100000000000000000 MINIMUM_USD
+
+## 单元测试
+
+```
+yarn hardhat test --grep "funder to array"
+```
