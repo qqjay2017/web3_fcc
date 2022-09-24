@@ -12,6 +12,12 @@ npx hardhat node
 npx hardhat run scripts/deploy.ts
 ```
 
+## 编译
+
+```
+yarn hardhat compile
+```
+
 ## 部署命令
 
 ```
@@ -30,4 +36,19 @@ yarn add @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers
 
 ```
 yarn hardhat test --grep "funder to array"
+
+```
+
+#### staging 测试
+
+```
+ yarn hardhat test  --network goerli
+```
+
+## LOCALHOST network
+
+```
+ yarn hardhat node
+
+yarn hardhat run scripts/withdraw.ts --network localhost
 ```
