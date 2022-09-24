@@ -9,18 +9,7 @@ library PriceConverter {
     view
     returns (uint256)
   {
-    // AggregatorV3Interface priceFeed = AggregatorV3Interface(0xD4a33860578De61DBAbDc8BFdb98FD742fA7028e);
-    // ABI
-    // Address 0xD4a33860578De61DBAbDc8BFdb98FD742fA7028e
-    (
-      ,
-      /*uint80 roundID*/
-      int256 price, /*uint startedAt*/ /*uint timeStamp*/
-      ,
-      ,
-
-    ) = /*uint80 answeredInRound*/
-      priceFeed.latestRoundData();
+    (, int256 price, , , ) = priceFeed.latestRoundData();
     return uint256(price * 1e10);
   }
 
