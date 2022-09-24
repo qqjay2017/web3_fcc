@@ -18,11 +18,11 @@ describe("FundMe", async () => {
     mockV3Aggregator = await ethers.getContract("MockV3Aggregator", deployer)
   })
   describe("constructor", async () => {
-    // it("sets the aggregator address", async () => {
-    //   // 价格获取器
-    //   const response = await fundMe.priceFeed()
-    //   assert(response, mockV3Aggregator.address)
-    // })
+    it("sets the aggregator address", async () => {
+      // 价格获取器
+      const response = await fundMe.getPriceFeed()
+      assert(response, mockV3Aggregator.address)
+    })
   })
   describe("fund", async () => {
     // 转账金额是否足够
@@ -35,7 +35,7 @@ describe("FundMe", async () => {
       await fundMe.fund({
         value: sendValue,
       })
-      const response = await fundMe.s_addressToAmountFunded(deployer)
+      const response = await fundMe.getAddressToAmountFunded(deployer)
       console.log(
         response.toString(),
         sendValue.toString(),
@@ -47,7 +47,7 @@ describe("FundMe", async () => {
       await fundMe.fund({
         value: sendValue,
       })
-      const response = await fundMe.s_funders(0)
+      const response = await fundMe.getFunder(0)
       assert.equal(response, deployer)
     })
   })
@@ -116,9 +116,9 @@ describe("FundMe", async () => {
         startingFundMeBalance.add(startingDeployerBalance).toString(),
         endingDeployerBalance.add(gasCost).toString()
       )
-      await expect(fundMe.s_funders(0)).to.be.reverted
+      await expect(fundMe.getFunder(0)).to.be.reverted
       for (let i = 0; i < 6; i++) {
-        const balance = await fundMe.s_addressToAmountFunded(
+        const balance = await fundMe.getAddressToAmountFunded(
           accounts[i].address
         )
         assert.equal(balance.toString(), "0")
@@ -202,9 +202,9 @@ describe("FundMe", async () => {
         startingFundMeBalance.add(startingDeployerBalance).toString(),
         endingDeployerBalance.add(gasCost).toString()
       )
-      await expect(fundMe.s_funders(0)).to.be.reverted
+      await expect(fundMe.getFunder(0)).to.be.reverted
       for (let i = 0; i < 6; i++) {
-        const balance = await fundMe.s_addressToAmountFunded(
+        const balance = await fundMe.getAddressToAmountFunded(
           accounts[i].address
         )
         assert.equal(balance.toString(), "0")
