@@ -36,6 +36,7 @@
     "typescript": ">=4.5.0"
   },
   "scripts": {
+    "compile": "yarn hardhat  compile",
     "test": "yarn hardhat test",
     "test:staging": "yarn hardhat test --network goerli",
     "lint": "solhint 'contracts/*.sol'",
