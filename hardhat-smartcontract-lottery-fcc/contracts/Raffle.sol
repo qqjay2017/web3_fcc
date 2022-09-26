@@ -2,6 +2,7 @@
 // Pragma
 pragma solidity ^0.8.8;
 
+import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
 import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 
 error Raffle_NotEnghtEthEntered();
@@ -28,7 +29,7 @@ contract Raffle is VRFConsumerBaseV2 {
     VRFConsumerBaseV2(vrfCoordinatorV2)
   {
     i_entranceFee = entranceFee;
-    COORDINATOR = VRFCoordinatorV2Interface(vrfCoordinator);
+    COORDINATOR = VRFCoordinatorV2Interface(vrfCoordinatorV2);
   }
 
   function enterRaffle() public payable {
