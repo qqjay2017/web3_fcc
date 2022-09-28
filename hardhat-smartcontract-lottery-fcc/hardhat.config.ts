@@ -27,9 +27,18 @@ const config: HardhatUserConfig = {
     deployer: {
       default: 0,
     },
+    player: {
+      default: 1,
+    },
+    player1: {
+      default: 2,
+    },
     simpleERC20Beneficiary: 1,
   },
   networks: {
+    hardhat: {
+      chainId: 31337,
+    },
     // defaultNetwork: "hardhat",
     goerli: {
       url: GOERLI_RPC_URL,

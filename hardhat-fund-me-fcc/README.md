@@ -24,6 +24,8 @@ yarn hardhat compile
 yarn hardhat deploy --network goerli
 ```
 
+### ts 版本
+
 ```
 yarn add @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers
 ```
