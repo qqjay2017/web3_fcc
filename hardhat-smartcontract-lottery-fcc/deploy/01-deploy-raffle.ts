@@ -69,6 +69,10 @@ const func: DeployFunction = async ({
     log("verifying...")
     await verify(raffle.address, args)
   }
+  log("Enter lottery with command:")
+  const networkName = network.name == "hardhat" ? "localhost" : network.name
+  log(`yarn hardhat run scripts/enterRaffle.js --network ${networkName}`)
+  log("----------------------------------------------------")
 }
 func.tags = ["all", "raffle"]
 export default func

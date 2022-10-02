@@ -30,5 +30,5 @@ const func: DeployFunction = async ({
     log("---------------------------------------------")
   }
 }
-
+func.tags = ["all", "mocks"]
 export default func

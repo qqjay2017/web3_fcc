@@ -9,7 +9,7 @@ import "hardhat/console.sol";
 
 error Raffle__SendMoreToEnterRaffle();
 error Raffle_TransferFailed();
-error Raffle__NotOpen();
+error Raffle__RaffleNotOpen();
 error Raffle__UpkeepNotNeeded(
   uint256 balance,
   uint256 length,
@@ -64,6 +64,7 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
     i_callbackGasLimit = callbackGasLimit;
     s_raffleState = RaffleState.OPEN;
     s_lastTimeStamp = block.timestamp;
+
     i_interval = interval;
   }
 
@@ -72,7 +73,7 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
       revert Raffle__SendMoreToEnterRaffle();
     }
     if (s_raffleState != RaffleState.OPEN) {
-      revert Raffle__NotOpen();
+      revert Raffle__RaffleNotOpen();
     }
     s_players.push(payable(msg.sender));
     emit RaffleEnter(msg.sender);
@@ -178,5 +179,9 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
 
   function getNumberOfPlayers() public view returns (uint256) {
     return s_players.length;
+  }
+
+  function getRaffleState() public view returns (RaffleState) {
+    return s_raffleState;
   }
 }
